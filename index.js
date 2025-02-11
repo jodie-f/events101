@@ -46,7 +46,7 @@ function snitchAttacher() {
 
 // 6. The div `mousereporter` contains a paragraph `report`.  When the mouse is anywhere over `mousereporter`, the `report` paragraph should be updated to include the position of the mouse within the screen, thus `x: 000 y: 000`.  Write a function `reportAttacher` that associates the mousemove event with a `reportUpdater` function.  Also write the `reportUpdater` function (you may wish to base this on `snitchUpdater`) which receives a single event object parameter and used the data in this object to update the `report` element.  Hint: there are screenX and screenY properties in the event object.
 function reportAttacher() {
- document.querySelector("#mousereporter").addEventListener('mousemove', reportUpdater)
+  document.querySelector("#mousereporter").addEventListener('mousemove', reportUpdater)
 }
 
 function reportUpdater(event) {
@@ -55,4 +55,16 @@ function reportUpdater(event) {
 }
 
 // 7. The input field `newid` is meant for the user to type an ID of an HTML element; IDs cannot have spaces in them, so the field needs to report when the user has a space in there. Write a function `idValidationAttacher` that gives the `newid` input field an event handler that checks the value whenever it has changed (use the `input` event). If the value contains any space, the event handler will add a class `invalid` to the `newid` input element, so that an error message shows. 
-function idValidationAttacher() {}
+function idValidationAttacher() {
+  document.querySelector("#newid").addEventListener('input', idValidationUpdater);
+}
+
+function idValidationUpdater() {
+  const input = document.querySelector("#newid").value;
+
+  if (input.includes(" ")) {
+    document.querySelector("#newid").classList.add('invalid');
+  } else {
+    document.querySelector("#newid").classList.remove('invalid');
+  }
+}
